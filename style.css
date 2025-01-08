@@ -1,0 +1,241 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8; /* Soft light background */
+    color: #333;
+}
+
+/* General Layout */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #004d80;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h6 {
+    font-weight: bold;
+    color: #004d80;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Main Section */
+.main {
+    width: 95%;
+    height: 700px;
+    background-color: #eaf7ff; /* Soft light blue background */
+    margin: 1% auto;
+    border: 2px solid #8fb2e3;
+    border-radius: 10px;
+}
+
+/* Map */
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Card for Statistical Analysis of Dataset */
+#statistics-card {
+    background-image: url('E:\GWU-VIRT-DATA-PT-08-2024-U-LOLC-main\Untitled Folder\OIP.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: white; /* Optional: to ensure the text is visible on top of the background */
+    border: none; /* Remove any border if any exists */
+    box-shadow: none; /* Remove shadow if present */
+}
+
+#statistics-card .card-header {
+    background-color: rgba(103, 197, 223, 0.405); /* Semi-transparent background for better text contrast */
+    border-radius: 10px;
+    padding: 15px;
+    text-decoration-line: none;
+
+#statistics-card .card-body {
+    background-color: transparent; /* Make sure no background color is applied */
+    color: #fff; /* Ensure the text stands out */
+}
+
+/* Headers in Cards */
+.card-header h4 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #004d80;
+    text-transform: uppercase;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+td {
+    border: 1px solid #ddd;
+}
+
+/* Summary Section */
+.summary {
+    width: 400px;
+    height: 300px;
+    background-color: #d6eaf8;
+    border: 2px solid #aed6f1;
+    margin-left: 10%;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+.card-body {
+    background-color: #ffffff; /* No background image here, just a clean white background */
+    color: #333; /* Dark text for readability */
+}
+
+/* Specific section for "Search by Year", "Search by Name", and others */
+.card-body h6 {
+    color: #333; /* Clear text color */
+}
+
+.card-header {
+    background-color: #f7f7f7; /* Light background for the header */
+    border-radius: 10px;
+}
+
+/* Styling for individual dropdowns and buttons */
+.select-container {
+    margin-bottom: 1rem;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background-color: #f4f8fb;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Styling for "Meteorite Details" and "APIs Available Routes" sections */
+.card-body ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.card-body ul li {
+    font-weight: 600;
+    color: #333;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-body ul li:hover {
+    background-color: #f0f4f8;
+    cursor: pointer;
+}
+
+.card-body ul li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .main {
+        height: auto;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .navbar {
+        font-size: 1rem;
+    }
+}
+
+/* Card Hover Effects */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Card background images removed */
+.card-body {
+    background-color: #ffffff; /* Removed background images */
+    padding: 20px;
+}
+
+/* Button Focus */
+button:focus, button:active {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(0, 123, 255, 0.6);
+}

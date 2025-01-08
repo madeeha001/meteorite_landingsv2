@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bar Chart</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+    
+    <!-- Leaflet JavaScript code -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12 p-5 text-center bg-light" 
+     style="position: relative; background-image: url('download.jpg'); background-size: cover; background-position: center;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 0;"></div>
+  
+    <div style="position: relative; z-index: 1;">
+        <h1 style="color: white; font-weight: bold; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);">
+            Meteorite-Landings
+        </h1>
+        <p style="color: white; font-weight: bold; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);">
+            Use the interactive charts below to explore the dataset
+        </p>
+    </div>
+    </div>
+    </div>
+
+    <div class="row" style="margin: 1%;">
+        <!-- First Column: Contains two rows -->
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-body bg-light">
+                        <h4>Search by Year:</h4>
+                        <select id="selDataset" onchange="optionChangedYear(this.value)"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-body bg-light">
+                        <h4>Search by Name:</h4>
+                        <select id="selName" onchange="optionChangedName(this.value)"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4 class="card-title">Meteorite Landings API</h4>
+                        </div>
+                        <button onclick="window.location.href='https://data.nasa.gov/Earth-Science/Meteorite-Landings-API/c2vx-j9ed/about_data';">
+                            Go to Website
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="row">
+                <div class="col-md-6" id="plot"></div>
+                <div class="col-md-6" id="plot-top"></div>
+            </div>
+        </div>
+        
+        <!-- Second Column: Meteorite Details -->
+        <div class="col-md-3">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4 class="card-title">Meteorite Details</h4>
+                </div>
+                <div id="name-info" class="card-body"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4" id="plot"></div>
+        <div class="col-md-4" id="plot-top"></div>
+    </div>
+    <div class="row">  
+        <div class="col-md-12">
+            <div class="card card-body bg-light" style="text-align: center;" >
+                <div id="stats-year"></div>
+            <div class="main">
+                <div id="map" ></div>
+            </div>
+        </div>    
+            <div class="row">
+               <!-- Card for Statistical Analysis of Dataset -->
+<div class="card col-md-6 card-body bg-light d-flex flex-column align-items-center justify-content-center" style="text-align: center; background-color: aliceblue; background-image: cover; background-position: center;" id="statistics-card">
+    <div class="card-header">
+        <h4 class="card-title">Statistical Analysis of Dataset</h4><hr>
+        <div id="statistics"></div>
+    </div>
+</div>
+
+                
+                <div class="card col-md-6 card-body bg-light" style="text-align: center;" >
+                    <div class="card-header">
+                        <h4 class="card-title">APIs: Available Routes</h4><hr>
+                        <div id="statistics" style="font-size: 1rem; color: #333; background-color: #f4f8fb; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <ul style="list-style-type: circle; padding: 0; margin-left: 20px;">
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/first-rec</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/year/&lt;int:year&gt;</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/unique-years</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/unique-names</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/merteorite-landings/count-all-years</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/merteorite-landings/max-year-count</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/name?</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/stats-year/year?</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/top-years</li>
+                                <li style="margin: 8px 0; font-weight: bold;">/api/v1.0/meteorite-landings/statistics</li>
+                            </ul>
+                        </div>
+                        
+                        
+                      </div>
+                </div>
+
+            </div>
+            
+        </div>
+            
+    </div>
+    <!-- <div id="statistics"></div> -->
+</body>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="bar.js"></script>
+<script type="text/javascript" src="logic.js"></script>
+</html>
